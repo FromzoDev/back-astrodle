@@ -15,21 +15,6 @@ services:
     networks:
       - default
 
-  db-test:
-    image: postgres:17
-    restart: unless-stopped
-    environment:
-      - POSTGRES_USER=astrodle_test
-      - POSTGRES_PASSWORD=astrodle_test
-      - POSTGRES_DB=astrodle_test
-    container_name: postgres-test
-    tmpfs:
-      - /var/lib/postgresql/data
-    ports:
-      - '5433:5432'
-    networks:
-      - default
-
   minio:
     image: minio/minio:latest
     container_name: astrodle-minio
@@ -52,6 +37,7 @@ services:
   minio-init:
     image: minio/mc:latest
     container_name: astrodle-minio-init
+    restart: "no"
     depends_on:
       minio:
         condition: service_healthy

@@ -70,8 +70,6 @@ services:
       MINIO_BUCKET: ${MINIO_BUCKET:-astrodle}
       MINIO_PUBLIC_URL: ${MINIO_PUBLIC_URL:-http://localhost:9000}
       MINIO_URL_STYLE: ${MINIO_URL_STYLE:-path}
-      BASIC_AUTH_USER: ${BASIC_AUTH_USER:?BASIC_AUTH_USER is required}
-      BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD:?BASIC_AUTH_PASSWORD is required}
     depends_on:
       - db
       - minio

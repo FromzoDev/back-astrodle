@@ -35,6 +35,8 @@ async function bootstrap() {
       'http://localhost:3001',
       'http://localhost:3002',
       'http://example.com',
+      'https://panel-preprod.astrodle.fr',
+      'https://prepreod.astrodle.fr',
     ],
     credentials: true,
   });

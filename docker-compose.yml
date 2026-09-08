@@ -75,10 +75,7 @@ services:
       - '3001:3000'
     depends_on:
       - db
-    env_file: .env  
-    volumes:
-      - .:/app
-      - /app/node_modules
+    env_file: .env
     networks:
       - default
     command: npm run start:dev

@@ -72,7 +72,7 @@ services:
       dockerfile: Dockerfile
     container_name: nest-docker-postgres
     ports:
-      - '3000:3000'
+      - '3001:3000'
     depends_on:
       - db
     env_file: .env  

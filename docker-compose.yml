@@ -73,8 +73,18 @@ services:
     container_name: nest-docker-postgres
     ports:
       - '3001:3000'
+    environment:
+      MINIO_ENDPOINT: ${MINIO_ENDPOINT:-minio}
+      MINIO_PORT: ${MINIO_PORT:-9000}
+      MINIO_USE_SSL: ${MINIO_USE_SSL:-false}
+      MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY:-astrodle-dev-key}
+      MINIO_SECRET_KEY: ${MINIO_SECRET_KEY:-astrodle-dev-secret-key}
+      MINIO_BUCKET: ${MINIO_BUCKET:-astrodle}
+      MINIO_PUBLIC_URL: ${MINIO_PUBLIC_URL:-http://localhost:9000}
+      MINIO_URL_STYLE: ${MINIO_URL_STYLE:-path}
     depends_on:
       - db
+      - minio
     env_file: .env
     networks:
       - default

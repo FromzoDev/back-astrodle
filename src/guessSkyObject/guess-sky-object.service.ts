@@ -51,10 +51,7 @@ export class GuessSkyObjectService implements PlayableGame {
     };
   }
 
-  async processAction(
-    session: GameSession,
-    action: unknown,
-  ): Promise<GuessResult> {
+  async processAction( session: GameSession, action: unknown,): Promise<GuessResult> {
     const { guess } = action as { guess: string };
     const data = session.gameData as GuessSkyObjectSessionData;
 
@@ -65,8 +62,7 @@ export class GuessSkyObjectService implements PlayableGame {
       throw new BadRequestException('Objet introuvable');
     }
 
-    const isCorrect =
-      normalizeText(guess) === normalizeText(spaceSkyObject.name);
+    const isCorrect = normalizeText(guess) === normalizeText(spaceSkyObject.name);
 
     if (isCorrect) {
       return { status: GameStatus.Won, gameData: data };
@@ -81,15 +77,9 @@ export class GuessSkyObjectService implements PlayableGame {
       };
     }
 
-    const newTile = pickRandomUnused(
-      [0, 1, 2, 3, 4, 5, 6, 7, 8],
-      data.revealedTileIndexes,
-    );
+    const newTile = pickRandomUnused([0, 1, 2, 3, 4, 5, 6, 7, 8],data.revealedTileIndexes, );
     const namePositions = Array.from({ length: data.nameLength }, (_, i) => i);
-    const newLetter = pickRandomUnused(
-      namePositions,
-      data.revealedLetterIndexes,
-    );
+    const newLetter = pickRandomUnused( namePositions, data.revealedLetterIndexes, );
     const newHint = pickRandomHint(data.revealedHintKeys);
 
     const updatedData: GuessSkyObjectSessionData = {

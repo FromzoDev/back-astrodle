@@ -41,11 +41,7 @@ export class GameService {
     return config?.isEnabled ?? false;
   }
 
-  async play(
-    gameType: GameType,
-    mode: GameMode,
-    gameLogic: PlayableGame,
-  ): Promise<GameSession> {
+  async play( gameType: GameType, mode: GameMode, gameLogic: PlayableGame, ): Promise<GameSession> {
     const isEnabled = await this.isGameAvailableInMode(gameType, mode);
     if (!isEnabled) {
       throw new ForbiddenException(ErrorMessage.GAME_NOT_AVAILABLE);
@@ -62,11 +58,7 @@ export class GameService {
     });
   }
 
-  async submitAction(
-    sessionId: string,
-    action: unknown,
-    gameLogic: PlayableGame,
-  ): Promise<GameSession> {
+  async submitAction( sessionId: string, action: unknown, gameLogic: PlayableGame): Promise<GameSession> {
     const session = await this.gameSessionRepository.findOneById(sessionId);
 
     if (!session) {
